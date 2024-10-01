@@ -1,11 +1,11 @@
 <script setup>
+import Navbar from '@/components/Navbar.vue'
 
 </script>
 
 <template>
   
-
-  <h1 class="" >App vue</h1>
+<Navbar />
 </template>
 
 <style scoped>
