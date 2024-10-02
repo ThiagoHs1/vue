@@ -11,13 +11,13 @@
         <Card>
           <h2 class="text-2xl font-bold">Para desenvolvedores</h2>
           <p class="mt-2 mb-4">
-            Descubra seu trabalho em Vue e começe sua carreira
+            Descubra sua vaga em Vue e começe sua carreira
           </p>
           <RouterLink
             to="/jobs"
             class="inline-block bg-black text-white rounded-lg px-4 py-2 hover:bg-gray-700"
           >
-            Trabalhos em Vue
+            Vagas em Vue
           </RouterLink>
         </Card>
 
@@ -25,13 +25,13 @@
         <Card bg="bg-green-100">
           <h2 class="text-2xl font-bold">Para empregadores</h2>
           <p class="mt-2 mb-4">
-            Liste seu trabalho e descubra o desenvolvedor Vue perfeito
+            Liste sua vaga e descubra o desenvolvedor Vue perfeito
           </p>
           <RouterLink
             to="/jobs/add"
             class="inline-block bg-green-500 text-white rounded-lg px-4 py-2 hover:bg-green-600"
           >
-            Adicionar Trabalho
+            Adicionar Vaga
           </RouterLink>
         </Card>
       </div>
