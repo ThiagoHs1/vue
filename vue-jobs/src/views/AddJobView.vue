@@ -33,11 +33,11 @@ const handleSubmit = async () => {
 
   try {
     const response = await axios.post('/api/jobs', newJob);
-    toast.success('Job Added Successfully');
+    toast.success('Serviço adicionado com sucesso');
     router.push(`/jobs/${response.data.id}`);
   } catch (error) {
-    console.error('Error adding job:', error);
-    toast.error('Failed to add job');
+    console.error('Erro em adicionar o serviço:', error);
+    toast.error('Falha em adicionar o serviço');
   }
 };
 </script>
