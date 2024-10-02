@@ -1,13 +1,23 @@
 <script setup>
 import router from '@/router';
 import { reactive, onMounted } from 'vue';
+
 import { useRoute } from 'vue-router';
 import { useToast } from 'vue-toastification';
 import axios from 'axios';
 
+
 const route = useRoute();
 
 const jobId = route.params.id;
+
+const state = reactive({
+  job: {},
+  isLoading: true,
+});
+
+
+
 
 const form = reactive({
   type: 'Full-Time',
@@ -23,9 +33,25 @@ const form = reactive({
   },
 });
 
-const state = reactive({
-  job: {},
-  isLoading: true,
+onMounted(async () => {
+  try {
+    const response = await axios.get(`/api/jobs/${jobId}`);
+    state.job = response.data;
+    // Populate form fields after fetching job data
+    form.type = state.job.type;
+    form.title = state.job.title;
+    form.description = state.job.description;
+    form.salary = state.job.salary;
+    form.location = state.job.location;
+    form.company.name = state.job.company.name;
+    form.company.description = state.job.company.description;
+    form.company.contactEmail = state.job.company.contactEmail;
+    form.company.contactPhone = state.job.company.contactPhone;
+  } catch (error) {
+    console.error('Error fetching job:', error);
+  } finally {
+    state.isLoading = false;
+  }
 });
 
 const toast = useToast();
@@ -46,35 +72,16 @@ const handleSubmit = async () => {
   };
 
   try {
-    const response = await axios.put(`/api/jobs/${jobId}`, updatedJob);
-    toast.success('Serviço editado com sucesso');
-    router.push(`/jobs/${response.data.id}`);
+    await axios.put(`/api/jobs/${jobId}`, updatedJob);
+    toast.success('Job Updated Successfully');
+    router.push(`/jobs/${jobId}`);
   } catch (error) {
-    console.error('Erro em adicionar o serviço', error);
-    toast.error('Falha em adicionar o serviço');
+    console.error('Error updating job:', error);
+    toast.error('Failed to update job');
   }
 };
 
-onMounted(async () => {
-  try {
-    const response = await axios.get(`/api/jobs/${jobId}`);
-    state.job = response.data;
-    // Populate inputs
-    form.type = state.job.type;
-    form.title = state.job.title;
-    form.description = state.job.description;
-    form.salary = state.job.salary;
-    form.location = state.job.location;
-    form.company.name = state.job.company.name;
-    form.company.description = state.job.company.description;
-    form.company.contactEmail = state.job.company.contactEmail;
-    form.company.contactPhone = state.job.company.contactPhone;
-  } catch (error) {
-    console.error('Erro em adicionar o serviço', error);
-  } finally {
-    state.isLoading = false;
-  }
-});
+
 </script>
 
 <template>
