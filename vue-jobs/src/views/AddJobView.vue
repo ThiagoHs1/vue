@@ -1,5 +1,12 @@
 <script setup>
 import { reactive } from 'vue';
+import axios from 'axios';
+import { useRouter } from 'vue-router';
+import { useToast } from 'vue-toastification';
+
+const router = useRouter();
+const toast = useToast();
+
 
 const form = reactive({
   type: 'Full-Time',
