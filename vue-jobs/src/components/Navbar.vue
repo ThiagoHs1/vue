@@ -47,7 +47,7 @@
                   isActiveLink('/jobs') ? 'bg-green-900' : 'hover:bg-gray-900 hover:text-white'
                 ]"
               >
-                Serviços
+                Vagas
               </RouterLink>
 
               <!-- Adicionar Trabalhos -->
